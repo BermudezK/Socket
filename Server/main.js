@@ -83,8 +83,7 @@ function respuesta (consulta){
 };
 
 io.on("connection",function(socket){
-
-  console.log('>> alguien se ha conectado con socket IP: '+socket.request.connection.remoteAddres+':'+socket.request.connection.remotePort);
+  console.log('>> alguien se ha conectado con socket IP: '+socket.handshake.address+':'+socket.request.connection.remotePort);
   //aparte de imprimir por consola se emita el mensaje de abajo
   socket.emit('messages',mensajes);
   //escuchar el evento del cliente
@@ -102,8 +101,7 @@ io.on("connection",function(socket){
   });
 
   socket.on('disconnect', function(){
-
-    console.log('>>> usuario desconectado'+socket.request.connection.remoteAddress+':'+socket.request.connection.remotePort);
+    console.log('>>> usuario desconectado'+ socket.handshake.address+':'+socket.request.connection.remotePort);
 
 });
 
